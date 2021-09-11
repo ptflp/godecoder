@@ -1,4 +1,4 @@
-module github.com/ptflp/decoder
+module github.com/ptflp/godecoder
 
 go 1.16
 
