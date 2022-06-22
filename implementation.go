@@ -14,15 +14,19 @@ type Decode struct {
 }
 
 func NewDecoder(args ...jsoniter.Config) Decoder {
-	if len(args) < 1 && decoderSingleton == nil {
+	conf := defaultConfig
+	if len(args) == 0 && decoderSingleton == nil {
 		decoderSingleton = &Decode{
-			api: defaultConfig,
+			api: conf,
 		}
 		return decoderSingleton
 	}
+	if len(args) > 0 {
+		conf = args[0].Froze()
+	}
 
 	return &Decode{
-		api: args[0].Froze(),
+		api: conf,
 	}
 }
 
